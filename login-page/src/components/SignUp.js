@@ -11,16 +11,16 @@ function SignUp() {
   });
   const [formValues, setFormValues] = useState([]);
 
-  const submitForm = (e) => {
-    e.preventDefualt();
+  const submitForm = () => {
     setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
   };
   useEffect(() => {
-    localStorage.setItem("formValues", JSON.stringify(formValues));
+    const val = localStorage.setItem("formValues", JSON.stringify(formValues));
+    console.log(val);
 
   }, [formValues]);
 
-  
+
 
   return (
     <div>
