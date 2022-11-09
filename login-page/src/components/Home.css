@@ -1,5 +1,6 @@
 .home {
   display: flex;
+  position: relative;
   background-color: aqua;
   flex-direction: row;
   align-items: right;
