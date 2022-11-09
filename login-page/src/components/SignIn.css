@@ -1,16 +1,13 @@
 .signin {
   display: flex;
-  position: absolute;
+  position: relative;
   flex-direction: column;
-  background-color: aquamarine;
+  background-color: rgba(19, 100, 73, 0.37);
   align-items: center;
   justify-content: center;
-  border: 1rem;
-  border-width: 2px;
-  border-color: aqua;
-  height: 70vh;
+  height: 50vh;
   width: 50vw;
-  top: 80px;
+  top: 50px;
   right: 25%;
   left: 25%;
 }

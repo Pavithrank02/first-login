@@ -16,8 +16,8 @@ function SignIn() {
   const submitButton = () => {
     setInputValues((prevInputValues) => [...prevInputValues, initialValues]);
     formVal();
-
   }
+  
   useEffect(() => {
     localStorage.setItem("inputValues", JSON.stringify(inputValues));
     
