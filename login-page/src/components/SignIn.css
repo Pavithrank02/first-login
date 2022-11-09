@@ -2,8 +2,12 @@
   display: flex;
   position: absolute;
   flex-direction: column;
+  background-color: aquamarine;
   align-items: center;
   justify-content: center;
+  border: 1rem;
+  border-width: 2px;
+  border-color: aqua;
   height: 70vh;
   width: 50vw;
   top: 80px;

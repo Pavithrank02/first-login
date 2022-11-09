@@ -20,6 +20,8 @@ function SignUp() {
 
   }, [formValues]);
 
+  
+
   return (
     <div>
       <Home />
