@@ -17,13 +17,17 @@ function SignIn() {
     setData((prev) => {
       return{...prev, [name]: value}});
   }
-  useEffect(() => {
-     localStorage.setItem("formValues", JSON.stringify(data));
-     }, [data]);
-  const submitButton = (e) => {
-    
-    e.preventDefault(); 
+
+  const setLocal = () => {
+    return localStorage.setItem("items", data);
   }
+ 
+  const submitButton = (e) => {
+    e.preventDefault();
+    console.log(setLocal(data));
+
+  }
+
   return (
     <div>
       <Home />
@@ -35,7 +39,7 @@ function SignIn() {
         <input type="text"  name="username" onChange={inputHanlder} value={data.username}/>
         <p> Password</p>
         <input type="password"   name="password" onChange={inputHanlder} value={data.password}/>
-        {<button onClick={submitButton}>Login</button>}
+        {<button onClick={submitButton} type="submit">Login</button>}
       </div>
     </div>
 
