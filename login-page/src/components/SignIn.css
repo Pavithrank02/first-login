@@ -1,6 +1,5 @@
 .signin {
   display: flex;
-  position: relative;
   flex-direction: column;
   background-color: rgba(19, 100, 73, 0.37);
   align-items: center;

@@ -20,34 +20,34 @@ function SignUp() {
 
   }, [formValues]);
 
-  
+
 
   return (
     <div>
       <Home />
-      <div >
-        <form className='signin'>
-        <p> Username</p>
-        <input type="text" value={initialValues.username}
-          onChange={(e) =>
-            setInitialValues({ ...initialValues, username: e.target.value })
-          } />
-        <p> Password</p>
-        <input type="text" value={initialValues.password}
-          onChange={(e) =>
-            setInitialValues({ ...initialValues, password: e.target.value })
-          }/>
-        <p> Email</p>
-        <input type="text" value={initialValues.email}
-          onChange={(e) =>
-            setInitialValues({ ...initialValues, email: e.target.value })
-          }/>
-        <p> Date of Birth</p>
-        <input type="text" value={initialValues.dob}
-          onChange={(e) =>
-            setInitialValues({ ...initialValues, dob: e.target.value })
-          }/>
-        <button onClick={submitForm}>Submit</button>
+      <div className='signin'>
+        <form >
+          <p> Username</p>
+          <input type="text" value={initialValues.username}
+            onChange={(e) =>
+              setInitialValues({ ...initialValues, username: e.target.value })
+            } />
+          <p> Password</p>
+          <input type="text" value={initialValues.password}
+            onChange={(e) =>
+              setInitialValues({ ...initialValues, password: e.target.value })
+            } />
+          <p> Email</p>
+          <input type="text" value={initialValues.email}
+            onChange={(e) =>
+              setInitialValues({ ...initialValues, email: e.target.value })
+            } />
+          <p> Date of Birth</p>
+          <input type="text" value={initialValues.dob}
+            onChange={(e) =>
+              setInitialValues({ ...initialValues, dob: e.target.value })
+            } />
+          <button onClick={submitForm}>Submit</button>
         </form>
       </div>
     </div>
