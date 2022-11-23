@@ -2,52 +2,45 @@ import React, { useState, useEffect } from 'react'
 import Home from './Home'
 import './SignIn.css'
 
+
 function SignUp() {
-  const [initialValues, setInitialValues] = useState({
+  const [data, setData] = useState({
     username: "",
     email: "",
-    password: "",
+    address: "",
     dob: ""
   });
-  const [formValues, setFormValues] = useState([]);
-
-  const submitForm = (e) => {
-    e.preventDefualt();
-    setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
-  };
+  const inputHanlder = event => {
+    const {name, value} = event.target;
+    setData((prev) => {
+      return{...prev, [name]: value}});
+  }
   useEffect(() => {
-    localStorage.setItem("formValues", JSON.stringify(formValues));
-
-  }, [formValues]);
-
-
-
+    localStorage.setItem("formValues", JSON.stringify(data));
+    }, [data]);
+  const submitForm = (e) => {
+    
+    e.preventDefault(); 
+    
+  }
+  useEffect(() => {
+    const val = localStorage.getItem("inputValue", JSON.stringify(data));
+    console.log(val)
+  }, [data]);
   return (
     <div>
       <Home />
       <div className='signin'>
-        <form >
-          <p> Username</p>
-          <input type="text" value={initialValues.username}
-            onChange={(e) =>
-              setInitialValues({ ...initialValues, username: e.target.value })
-            } />
-          <p> Password</p>
-          <input type="text" value={initialValues.password}
-            onChange={(e) =>
-              setInitialValues({ ...initialValues, password: e.target.value })
-            } />
-          <p> Email</p>
-          <input type="text" value={initialValues.email}
-            onChange={(e) =>
-              setInitialValues({ ...initialValues, email: e.target.value })
-            } />
-          <p> Date of Birth</p>
-          <input type="text" value={initialValues.dob}
-            onChange={(e) =>
-              setInitialValues({ ...initialValues, dob: e.target.value })
-            } />
-          <button onClick={submitForm}>Submit</button>
+        <form onClick={submitForm}>
+        <p> Username</p>
+        <input type="text"  name="username" onChange={inputHanlder} value={data.username}/>
+        <p> Email</p>
+        <input type="text"   name="email" onChange={inputHanlder} value={data.email}/>
+        <p> Address</p>
+        <input type="text"   name="address" onChange={inputHanlder} value={data.address}/>
+        <p> Password</p>
+        <input type="password"   name="password" onChange={inputHanlder} value={data.password}/> 
+          <button >Submit</button>
         </form>
       </div>
     </div>

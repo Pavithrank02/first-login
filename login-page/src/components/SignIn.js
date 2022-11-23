@@ -18,13 +18,13 @@ function SignIn() {
       return{...prev, [name]: value}});
   }
 
-  const setLocal = () => {
-    return localStorage.setItem("items", data);
-  }
+
+useEffect(() => {
+  localStorage.setItem('items', JSON.stringify(data));
+}, [data]);
  
   const submitButton = (e) => {
     e.preventDefault();
-    console.log(setLocal(data));
 
   }
 
