@@ -4,8 +4,10 @@ import { IconButton } from "@mui/material";
 import './SignIn.css'
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import Home from './Home';
+import {useNavigate} from 'react-router-dom'
 
 function SignIn() {
+  const history = useNavigate()
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -27,9 +29,9 @@ function SignIn() {
   const submitButton = (e) => {
     e.preventDefault();
     const user = localStorage.getItem("formValues");
-    console.log(user);
+    // console.log(user);
 
-    // if(data.username === inputVal.username && data.password === inputVal.password){
+    // if(user.username === username && user.password === password){
     //   console.log("match");
     // } else {
     //   console.log("doesnt match");
@@ -42,10 +44,26 @@ function SignIn() {
     }else if(password.length < 5 ) {
       alert("Please enter valid password")
     } else{
+      if(user && user.length) {
+        const userData = JSON.parse(user);
+        if(userData.username === username && userData.password === password) {
+          console.log("login successful");
+          history("/success")
+        } else if(userData.length === "") {
+          alert("please enter details")
+        } 
+        
+
+        // const getUser = userData.filter((el, val) => {
+        //   return el.username === username && el.password === password;
+        // });
+        // console.log(getUser)
+      }
+
+    
+    
     
     }
-    
-
 
   }
 
