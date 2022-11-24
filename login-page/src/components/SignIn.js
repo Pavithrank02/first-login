@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { IconButton } from "@mui/material";
 import './SignIn.css'
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import Home from './Home';
-
 
 function SignIn() {
   const [data, setData] = useState({
@@ -18,19 +16,43 @@ function SignIn() {
       return{...prev, [name]: value}});
   }
 
+// useEffect(() => {
+//     const inputVal = JSON.parse(localStorage.getItem('formValues'));
+//     if (inputVal) {
+//      setInputVal(inputVal);
+//     }
+//   }, []);
 
-useEffect(() => {
-  localStorage.setItem('items', JSON.stringify(data));
-}, [data]);
  
   const submitButton = (e) => {
     e.preventDefault();
+    const user = localStorage.getItem("formValues");
+    console.log(user);
+
+    // if(data.username === inputVal.username && data.password === inputVal.password){
+    //   console.log("match");
+    // } else {
+    //   console.log("doesnt match");
+    // }
+ 
+    const {username, password} = data;
+    if(username === "") {
+      alert("Please enter username")
+
+    }else if(password.length < 5 ) {
+      alert("Please enter valid password")
+    } else{
+    
+    }
+    
+
 
   }
 
   return (
     <div>
       <Home />
+      <form>
       <div className='signin'>
         <IconButton>
           <AccountCircleRoundedIcon sx={{ fontSize: 70 }} />
@@ -41,7 +63,8 @@ useEffect(() => {
         <input type="password"   name="password" onChange={inputHanlder} value={data.password}/>
         {<button onClick={submitButton} type="submit">Login</button>}
       </div>
-    </div>
+      </form>
+      </div>
 
   )
 }

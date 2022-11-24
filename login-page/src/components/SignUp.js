@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Home from './Home'
 import './SignIn.css'
 
@@ -8,30 +8,43 @@ function SignUp() {
     username: "",
     email: "",
     address: "",
-    dob: ""
+    password: ""
   });
   const inputHanlder = event => {
+
     const {name, value} = event.target;
-    setData((prev) => {
-      return{...prev, [name]: value}});
+    setData(() => { 
+      return {
+        ...data, [name]: value}});
   }
-  useEffect(() => {
-    localStorage.setItem("formValues", JSON.stringify(data));
-    }, [data]);
+    
   const submitForm = (e) => {
     
     e.preventDefault(); 
-    
+    const {username, email, address, password} = data;
+    if(username === "") {
+      alert("Please enter username")
+
+    } else if(!email.includes("@")) {
+      alert("Please enter correct email")
+
+    }
+    else if(address === "") {
+      alert("Please enter correct address")
+    }
+    else if(password.length < 5 ) {
+      alert("Please enter valid password")
+    } else{
+      //console.log("details entered")
+      localStorage.setItem('formValues', JSON.stringify(data));
+    }
+
   }
-  useEffect(() => {
-    const val = localStorage.getItem("inputValue", JSON.stringify(data));
-    console.log(val)
-  }, [data]);
   return (
     <div>
       <Home />
       <div className='signin'>
-        <form onClick={submitForm}>
+        <form onSubmit={submitForm}>
         <p> Username</p>
         <input type="text"  name="username" onChange={inputHanlder} value={data.username}/>
         <p> Email</p>
@@ -40,7 +53,7 @@ function SignUp() {
         <input type="text"   name="address" onChange={inputHanlder} value={data.address}/>
         <p> Password</p>
         <input type="password"   name="password" onChange={inputHanlder} value={data.password}/> 
-          <button >Submit</button>
+          <button onClick={submitForm}>Submit</button>
         </form>
       </div>
     </div>
