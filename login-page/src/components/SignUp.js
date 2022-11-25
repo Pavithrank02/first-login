@@ -21,6 +21,11 @@ function SignUp() {
   useEffect(() => {
     previousInputValue.current = data;
   }, [data]);
+
+  const storeData = (prevDat)  =>{
+    const prevData = localStorage.setItem('formValues', JSON.stringify(data));
+    console.log( prevData);
+  }
     
   const submitForm = (e) => {
     
@@ -43,7 +48,7 @@ function SignUp() {
       alert("Please enter valid password")
     } else{
       //console.log("details entered")
-      localStorage.setItem('formValues', JSON.stringify(data));
+      storeData();
     }
 
     setData({ username: '', password: '', email:'', address: "" });
