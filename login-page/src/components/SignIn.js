@@ -21,6 +21,10 @@
         }
         const handleSubmit = () => {
           const userDetails = localStorage.getItem("formValues");
+          //const result = Object.keys(userDetails).map((key) => [Number(key), userDetails[key]])
+        
+          console.log( userDetails)
+
           const { username, password } = data;
 
           if (username === "") {
@@ -30,13 +34,14 @@
             alert("Please enter valid password")
           } else {
             const userFound = userDetails.find((userInfo) => userInfo.username === username && userInfo.password === password )
-            console.log(userFound);
-              if(userFound) {
-                console.log("login successful");
-                history("/success")
-              } else {
-                alert("login failed")
-              }
+            console.log( userFound.username)
+            // console.log(userFound );
+            //   if(userFound) {
+            //     console.log("login successful");
+            //     history("/success")
+            //   } else {
+            //     alert("login failed")
+            //   }
             }
           }
     
