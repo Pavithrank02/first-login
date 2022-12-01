@@ -13,6 +13,7 @@ function App() {
        <Route path="/signIn" element={<SignIn />} />
        <Route path="/signUp" element={<SignUp />} />
        <Route path="/success" element={<SuccessCard />} />
+       <Route path="/ss.js"  />
       </Routes> 
     </div>
   );

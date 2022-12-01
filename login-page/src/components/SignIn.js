@@ -9,13 +9,13 @@
       
       function SignIn() {
         const history = useNavigate()
-        const [data, setData] = useState({
+        const [userData, setUserData] = useState({
           username: "",
           password: "",
         });
         const inputHanlder = event => {
           const { name, value } = event.target;
-          setData((prev) => {
+          setUserData((prev) => {
             return { ...prev, [name]: value }
           });
         }
@@ -25,7 +25,7 @@
         
           console.log( userDetails)
 
-          const { username, password } = data;
+          const { username, password } = userData;
 
           if (username === "") {
             alert("Please enter username")
@@ -33,18 +33,17 @@
           } else if (password.length < 5) {
             alert("Please enter valid password")
           } else {
-            const userFound = userDetails.find((userInfo) => userInfo.username === username && userInfo.password === password )
-            console.log( userFound.username)
-            // console.log(userFound );
-            //   if(userFound) {
-            //     console.log("login successful");
-            //     history("/success")
-            //   } else {
-            //     alert("login failed")
-            //   }
+            if(userDetails && userDetails.length) {
+              const userData = JSON.parse(userDetails);
+              if(userData.username === username && userData.password === password) {
+                console.log("login successful");
+                history("/success")
+              } else if(userData.length === "") {
+                alert("please enter details")
+              } 
             }
           }
-    
+        }
       
         return (
           <div>
@@ -55,9 +54,9 @@
                   <AccountCircleRoundedIcon sx={{ fontSize: 70 }} />
                 </IconButton>
                 <p> Username</p>
-                <input type="text" name="username" onChange={inputHanlder} value={data.username} />
+                <input type="text" name="username" onChange={inputHanlder} value={userData.username} />
                 <p> Password</p>
-                <input type="password" name="password" onChange={inputHanlder} value={data.password} />
+                <input type="password" name="password" onChange={inputHanlder} value={userData.password} />
                 {<button onClick={handleSubmit} type="submit">Login</button>}
               </div>
             </form>

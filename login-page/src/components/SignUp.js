@@ -22,7 +22,7 @@ function SignUp() {
     previousInputValue.current = data;
   }, [data]);
 
-  const storeData = (prevDat)  =>{
+  const storeData = (e)  =>{
     const prevData = localStorage.setItem('formValues', JSON.stringify(data));
     console.log( prevData);
   }
@@ -31,7 +31,7 @@ function SignUp() {
     
     e.preventDefault(); 
 
-    console.log(previousInputValue.current);
+    //console.log(previousInputValue.current);
 
     const {username, email, address, password} = previousInputValue.current;
     if(username === "") {
