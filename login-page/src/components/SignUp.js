@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import Home from './Home'
 import './SignIn.css'
 
@@ -10,32 +10,32 @@ function SignUp() {
     address: "",
     password: ""
   });
-  const previousInputValue = useRef("");
   const inputHanlder = event => {
 
     const {name, value} = event.target;
     setData(() => { 
       return {
         ...data, [name]: value}});
+        
   }
-
-
   const storeData = ()  =>{
-    localStorage.setItem('formValues', JSON.stringify(data));
+    var names = JSON.parse(localStorage.getItem("formsValues") ||"[]")
+    names.push(data);
+    localStorage.setItem("formValues", JSON.stringify(names));
+   
     // const prevData = localStorage.getItem('formValues');
     // const oldData = prevData.localStorage.setItem("newFormValues");
-    // console.log(oldData);
-    var names = [];
-    names[0] = data
-    localStorage.setItem("newData", JSON.stringify(names));
+    // console.log(oldData); 
   }
+  // const addData = () => {
+  //   
+  // }
     
   const submitForm = (e) => {
     
     e.preventDefault(); 
 
     //console.log(previousInputValue.current);
-
     const {username, email, address, password} = data;
     if(username === "") {
       alert("Please enter username")
@@ -52,10 +52,11 @@ function SignUp() {
     } else{
       //console.log("details entered")
       storeData();
+      setData({ username: '', password: '', email:'', address: "" });
+     //addData();
     }
-
-    setData({ username: '', password: '', email:'', address: "" });
-
+    
+    
   }
   
   return (
@@ -64,13 +65,13 @@ function SignUp() {
       <div className='signin'>
         <form onSubmit={submitForm}>
         <p> Username</p>
-        <input type="text"  name="username" onChange={inputHanlder} value={data.username}ref={previousInputValue}/>
+        <input type="text"  name="username" onChange={inputHanlder} value={data.username} />
         <p> Email</p>
-        <input type="text"   name="email" onChange={inputHanlder} value={data.email}ref={previousInputValue}/>
+        <input type="text"   name="email" onChange={inputHanlder} value={data.email} />
         <p> Address</p>
-        <input type="text"   name="address" onChange={inputHanlder} value={data.address} ref={previousInputValue}/>
+        <input type="text"   name="address" onChange={inputHanlder} value={data.address} />
         <p> Password</p>
-        <input type="password"   name="password" onChange={inputHanlder} value={data.password}ref={previousInputValue}/> 
+        <input type="password"   name="password" onChange={inputHanlder} value={data.password}/> 
           <button onClick={submitForm}>Submit</button>
         </form>
       </div>
