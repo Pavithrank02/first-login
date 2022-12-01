@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import Home from './Home'
 import './SignIn.css'
 
-
+const initialData = {
+  username: "",
+  email: "",
+  address: "",
+  password: ""
+}
 function SignUp() {
-  const [data, setData] = useState({
-    username: "",
-    email: "",
-    address: "",
-    password: ""
-  });
+  const [data, setData] = useState(initialData);
   const inputHanlder = event => {
 
     const {name, value} = event.target;
@@ -19,9 +19,11 @@ function SignUp() {
         
   }
   const storeData = ()  =>{
-    var names = JSON.parse(localStorage.getItem("formsValues") ||"[]")
-    names.push(data);
-    localStorage.setItem("formValues", JSON.stringify(names));
+    var names = localStorage.getItem("formsValues") || []
+    console.log("names",names)
+    let newArr = [...names, data];
+    console.log("names1",newArr)
+    localStorage.setItem("formsValues",newArr);
    
     // const prevData = localStorage.getItem('formValues');
     // const oldData = prevData.localStorage.setItem("newFormValues");
@@ -52,7 +54,7 @@ function SignUp() {
     } else{
       //console.log("details entered")
       storeData();
-      setData({ username: '', password: '', email:'', address: "" });
+      setData(initialData);
      //addData();
     }
     
