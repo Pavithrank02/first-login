@@ -19,15 +19,15 @@ function SignUp() {
         ...data, [name]: value}});
   }
 
-  useEffect(() => {
-    previousInputValue.current = data;
-    localStorage.setItem("newformValues", JSON.stringify(previousInputValue.current))
-  }, [previousInputValue.current]);
 
-  const storeData = (e)  =>{
+  const storeData = ()  =>{
     localStorage.setItem('formValues', JSON.stringify(data));
-    const prevData = localStorage.getItem('formValues');
-    console.log(prevData);
+    // const prevData = localStorage.getItem('formValues');
+    // const oldData = prevData.localStorage.setItem("newFormValues");
+    // console.log(oldData);
+    var names = [];
+    names[0] = data
+    localStorage.setItem("newData", JSON.stringify(names));
   }
     
   const submitForm = (e) => {
