@@ -26,11 +26,12 @@
           console.log( userDetails)
 
           const { username, password } = userData;
+          let regex =   /^[0-9]\w{7,14}$/;
 
           if (username === "") {
             alert("Please enter username")
       
-          } else if (password.length < 5) {
+          } else if (password.match(regex)) {
             alert("Please enter valid password")
           } else {
             if(userDetails && userDetails.length) {
