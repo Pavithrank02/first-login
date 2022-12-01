@@ -18,13 +18,16 @@ function SignUp() {
       return {
         ...data, [name]: value}});
   }
+
   useEffect(() => {
     previousInputValue.current = data;
-  }, [data]);
+    localStorage.setItem("newformValues", JSON.stringify(previousInputValue.current))
+  }, [previousInputValue.current]);
 
   const storeData = (e)  =>{
-    const prevData = localStorage.setItem('formValues', JSON.stringify(data));
-    console.log( prevData);
+    localStorage.setItem('formValues', JSON.stringify(data));
+    const prevData = localStorage.getItem('formValues');
+    console.log(prevData);
   }
     
   const submitForm = (e) => {
@@ -33,7 +36,7 @@ function SignUp() {
 
     //console.log(previousInputValue.current);
 
-    const {username, email, address, password} = previousInputValue.current;
+    const {username, email, address, password} = data;
     if(username === "") {
       alert("Please enter username")
 

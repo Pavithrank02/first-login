@@ -23,7 +23,7 @@
           const userDetails = localStorage.getItem("formValues");
           //const result = Object.keys(userDetails).map((key) => [Number(key), userDetails[key]])
         
-          console.log( userDetails)
+          //console.log( userDetails)
 
           const { username, password } = userData;
           let regex =   /^[0-9]\w{7,14}$/;
@@ -34,15 +34,14 @@
           } else if (password.match(regex)) {
             alert("Please enter valid password")
           } else {
-            if(userDetails && userDetails.length) {
-              const userData = JSON.parse(userDetails);
-              if(userData.username === username && userData.password === password) {
+             const userFound = userDetails.find((userInfo) => userInfo.username === username && userInfo.password === password )
+
+              if(userFound) {
                 console.log("login successful");
                 history("/success")
               } else if(userData.length === "") {
                 alert("please enter details")
               } 
-            }
           }
         }
       
